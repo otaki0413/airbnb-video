@@ -1,12 +1,12 @@
 {
-  "$schema": "https://json.schemastore.org/eslintrc",
-  "root": true,
-  "extends": ["next/core-web-vitals", "prettier", "plugin:tailwindcss/recommended"],
-  "plugins": ["tailwindcss"],
-  "rules": { "@next/next/no-img-element": "off" },
+  "$schema": "https://json.schemastore.org/eslintrc", // ESLintの設定ファイルスキーマを参照する設定
+  "root": true, // eslintの設定をrootから探す設定
+  "extends": ["next/core-web-vitals", "prettier", "plugin:tailwindcss/recommended"], // eslintの設定を拡張する設定
+  "plugins": ["tailwindcss"], // eslintのプラグインを設定する設定
+  "rules": { "@next/next/no-img-element": "off" }, // Nextプロジェクトにて、<img>を使った際の警告を無効化する設定
   "settings": {
     "tailwindcss": { "callees": ["cn"], "config": "tailwind.config.mjs" },
     "next": { "rootDir": true }
   },
-  "overrides": [{ "files": ["*.ts", "*.tsx"], "parser": "@typescript-eslint/parser" }]
+  "overrides": [{ "files": ["*.ts", "*.tsx"], "parser": "@typescript-eslint/parser" }] // 特定ファイルに対して、ESLintのパーサーを設定する設定
 }
