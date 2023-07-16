@@ -10,9 +10,12 @@ import { MenuItem } from "@/app/_components/navbar/MenuItem";
 export const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // モーダルの開閉処理
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
+
+  console.log(isOpen);
 
   return (
     <div className="relative">
@@ -25,7 +28,7 @@ export const UserMenu = () => {
         </div>
         <div
           onClick={toggleOpen}
-          className="flex cursor-pointer flex-row items-center gap-3 rounded-full border-2 border-neutral-200 p-4 transition hover:shadow-md md:px-2 md:py-1"
+          className="flex cursor-pointer flex-row items-center gap-3 rounded-full border border-neutral-200 p-4 transition hover:shadow-md md:px-2 md:py-1"
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
@@ -34,14 +37,15 @@ export const UserMenu = () => {
         </div>
       </div>
 
-      {isOpen && (
+      {/* ログイン・サインアップ用モーダル */}
+      {isOpen ? (
         <div className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md md:w-3/4">
           <div className="flex cursor-pointer flex-col">
             <MenuItem onclick={() => {}} label="Login" />
             <MenuItem onclick={() => {}} label="Sign up" />
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
