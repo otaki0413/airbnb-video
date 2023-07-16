@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 
 import { ClientOnly } from "@/app/_components/ClientOnly";
+import { Modal } from "@/app/_components/modals/Modal";
 import { Navbar } from "@/app/_components/navbar/Navbar";
 
 import "./globals.css";
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ja">
       <body className={font.className}>
         <ClientOnly>
+          <Modal actionLabel="Submit" title="Hello World" isOpen />
           <Navbar />
         </ClientOnly>
         {children}
