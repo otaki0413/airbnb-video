@@ -5,9 +5,12 @@ import { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
 import { Avatar } from "@/app/_components/Avatar";
+import { RegisterModal } from "@/app/_components/modals/RegisterModal";
 import { MenuItem } from "@/app/_components/navbar/MenuItem";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 export const UserMenu = () => {
+  const registerModal = useRegisterModal();
   const [isOpen, setIsOpen] = useState(false);
 
   // モーダルの開閉処理
@@ -40,7 +43,7 @@ export const UserMenu = () => {
         <div className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md md:w-3/4">
           <div className="flex cursor-pointer flex-col">
             <MenuItem onclick={() => {}} label="Login" />
-            <MenuItem onclick={() => {}} label="Sign up" />
+            <MenuItem onclick={registerModal.onOpen} label="Sign up" />
           </div>
         </div>
       ) : null}
