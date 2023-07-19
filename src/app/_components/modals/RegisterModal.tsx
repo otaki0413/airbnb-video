@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import axios from "axios";
 import { FieldValue, FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
@@ -40,7 +41,7 @@ export const RegisterModal = () => {
         registerModal.onClose();
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("Something went wrong.", { duration: 3000 });
       })
       .finally(() => {
         // ローディング状態を解除する
