@@ -8,6 +8,7 @@ import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
 import { Heading } from "@/app/_components/Heading";
+import { Input } from "@/app/_components/inputs/Input";
 import { Modal } from "@/app/_components/modals/Modal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 
@@ -51,6 +52,17 @@ export const RegisterModal = () => {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome to Airbnb" subtitle="Create an account!" />
+      <Input id="email" label="Email" disabled={isLoading} register={register} errors={errors} required />
+      <Input id="name" label="Name" disabled={isLoading} register={register} errors={errors} required />
+      <Input
+        id="password"
+        type="password"
+        label="Password"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
     </div>
   );
 
