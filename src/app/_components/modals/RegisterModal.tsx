@@ -7,6 +7,7 @@ import { FieldValue, FieldValues, SubmitHandler, useForm } from "react-hook-form
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
+import { Heading } from "@/app/_components/Heading";
 import { Modal } from "@/app/_components/modals/Modal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 
@@ -47,7 +48,11 @@ export const RegisterModal = () => {
   };
 
   // モーダル内のコンテンツ
-  const bodyContent = <div className="flex flex-col gap-4">Hello Modal Body!</div>;
+  const bodyContent = (
+    <div className="flex flex-col gap-4">
+      <Heading title="Welcome to Airbnb" subtitle="Create an account!" />
+    </div>
+  );
 
   return (
     <Modal
