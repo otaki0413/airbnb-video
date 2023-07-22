@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 
+import { ClientOnly } from "@/app/_components/ClientOnly";
 import { Navbar } from "@/app/_components/navbar/Navbar";
 
 import "./globals.css";
+
+import { RegisterModal } from "@/app/_components/modals/RegisterModal";
+import { ToasterProvider } from "@/app/providers/ToasterProvider";
 
 export const metadata: Metadata = {
   title: "Airbnb",
@@ -19,7 +23,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja">
       <body className={font.className}>
-        <Navbar />
+        <ClientOnly>
+          <ToasterProvider />
+          <RegisterModal />
+          <Navbar />
+        </ClientOnly>
         {children}
       </body>
     </html>
