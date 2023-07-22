@@ -5,7 +5,6 @@ import { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
 import { Avatar } from "@/app/_components/Avatar";
-import { RegisterModal } from "@/app/_components/modals/RegisterModal";
 import { MenuItem } from "@/app/_components/navbar/MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 

@@ -31,9 +31,10 @@ export const Modal: FC<ModalProps> = ({
   secondaryAction,
   secondaryActionLabel,
 }) => {
+  // モーダルの表示状態を管理するフラグ、初期値にはzustandで指定したfalseがひとまず入る
   const [showModal, setShowModal] = useState(isOpen);
 
-  // マウント時にフラグを立てる
+  // 外部からのisOpenの変更を検知してモーダルを表示する
   useEffect(() => {
     setShowModal(isOpen);
   }, [isOpen]);
