@@ -6,7 +6,9 @@ import { Navbar } from "@/app/_components/navbar/Navbar";
 
 import "./globals.css";
 
+import { LoginModal } from "@/app/_components/modals/LoginModal";
 import { RegisterModal } from "@/app/_components/modals/RegisterModal";
+import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { ToasterProvider } from "@/app/providers/ToasterProvider";
 
 export const metadata: Metadata = {
@@ -19,14 +21,18 @@ const font = Nunito({
   subsets: ["latin"],
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // カレントユーザーの取得
+  const currentUser = await getCurrentUser();
+
   return (
     <html lang="ja">
       <body className={font.className}>
         <ClientOnly>
           <ToasterProvider />
+          <LoginModal />
           <RegisterModal />
-          <Navbar />
+          <Navbar currentUser={currentUser} />
         </ClientOnly>
         {children}
       </body>
