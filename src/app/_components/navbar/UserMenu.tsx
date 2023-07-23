@@ -2,7 +2,6 @@
 
 import { FC, useCallback, useState } from "react";
 
-import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { AiOutlineMenu } from "react-icons/ai";
 
@@ -10,9 +9,10 @@ import { Avatar } from "@/app/_components/Avatar";
 import { MenuItem } from "@/app/_components/navbar/MenuItem";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import { SafeUser } from "@/app/types";
 
 type UserMenuProps = {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 };
 
 export const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {

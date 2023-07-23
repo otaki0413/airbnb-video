@@ -2,15 +2,14 @@
 
 import { FC } from "react";
 
-import { User } from "@prisma/client";
-
 import { Container } from "@/app/_components/Container";
 import { Logo } from "@/app/_components/navbar/Logo";
 import { Search } from "@/app/_components/navbar/Search";
 import { UserMenu } from "@/app/_components/navbar/UserMenu";
+import { SafeUser } from "@/app/types";
 
 type NavbarProps = {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 };
 
 export const Navbar: FC<NavbarProps> = ({ currentUser }) => {
