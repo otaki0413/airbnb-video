@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
-type RegisterModalState = {
+type RegisterModalStore = {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 };
 
 // モーダル状態を管理するカスタムフック
-const useRegisterModal = create<RegisterModalState>((set) => ({
+const useRegisterModal = create<RegisterModalStore>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
