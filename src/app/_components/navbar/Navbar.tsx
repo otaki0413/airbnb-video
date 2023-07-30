@@ -3,6 +3,7 @@
 import { FC } from "react";
 
 import { Container } from "@/app/_components/Container";
+import { Categories } from "@/app/_components/navbar/Categories";
 import { Logo } from "@/app/_components/navbar/Logo";
 import { Search } from "@/app/_components/navbar/Search";
 import { UserMenu } from "@/app/_components/navbar/UserMenu";
@@ -24,6 +25,8 @@ export const Navbar: FC<NavbarProps> = ({ currentUser }) => {
           </div>
         </Container>
       </div>
+      {/* カテゴリー */}
+      <Categories />
     </div>
   );
 };
