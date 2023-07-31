@@ -8,6 +8,7 @@ import "./globals.css";
 
 import { LoginModal } from "@/app/_components/modals/LoginModal";
 import { RegisterModal } from "@/app/_components/modals/RegisterModal";
+import { RentModal } from "@/app/_components/modals/RentModal";
 import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { ToasterProvider } from "@/app/providers/ToasterProvider";
 
@@ -30,6 +31,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className={font.className}>
         <ClientOnly>
           <ToasterProvider />
+          <RentModal />
           <LoginModal />
           <RegisterModal />
           <Navbar currentUser={currentUser} />

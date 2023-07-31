@@ -9,6 +9,7 @@ import { Avatar } from "@/app/_components/Avatar";
 import { MenuItem } from "@/app/_components/navbar/MenuItem";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useRentModal from "@/app/hooks/useRentModal";
 import { SafeUser } from "@/app/types";
 
 type UserMenuProps = {
@@ -18,6 +19,7 @@ type UserMenuProps = {
 export const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
+  const rentModal = useRentModal();
   const [isOpen, setIsOpen] = useState(false);
 
   // モーダルの開閉処理
@@ -25,11 +27,21 @@ export const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
     setIsOpen((prev) => !prev);
   }, []);
 
+  const onRent = useCallback(() => {
+    // ログインしていない場合はログインモーダルを開く
+    if (!currentUser) {
+      // なぜreturnが必要なのか？
+      return loginModal.onOpen();
+    }
+    // ログインしている場合はレンタル用のモーダルを開く
+    rentModal.onOpen();
+  }, [currentUser, loginModal, rentModal]);
+
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
-          onClick={() => {}}
+          onClick={onRent}
           className="hidden cursor-pointer rounded-full px-4 py-3 text-sm font-semibold transition hover:bg-neutral-100 hover:shadow-md md:block"
         >
           Airbnb your home
@@ -55,7 +67,7 @@ export const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem onclick={() => {}} label="My favorites" />
                 <MenuItem onclick={() => {}} label="My reservations" />
                 <MenuItem onclick={() => {}} label="My properties" />
-                <MenuItem onclick={() => {}} label="Airbnb my home" />
+                <MenuItem onclick={rentModal.onOpen} label="Airbnb my home" />
                 <hr />
                 <MenuItem onclick={() => signOut()} label="Logout" />
               </>
