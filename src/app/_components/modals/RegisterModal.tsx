@@ -13,11 +13,13 @@ import { Button } from "@/app/_components/Button";
 import { Heading } from "@/app/_components/Heading";
 import { Input } from "@/app/_components/inputs/Input";
 import { Modal } from "@/app/_components/modals/Modal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 // 登録用のモーダル
 export const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   // useFormの設定
@@ -52,6 +54,12 @@ export const RegisterModal = () => {
       });
   };
 
+  // モーダルを切り替える処理
+  const toggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
+
   // モーダル内のコンテンツ
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -79,7 +87,7 @@ export const RegisterModal = () => {
       <div className="mt-4 text-center font-light text-neutral-500">
         <div className="flex flex-row items-center justify-center gap-2">
           <div>Already have an account?</div>
-          <div onClick={registerModal.onClose} className="cursor-pointer text-neutral-800 hover:underline">
+          <div onClick={toggle} className="cursor-pointer text-neutral-800 hover:underline">
             Login
           </div>
         </div>
