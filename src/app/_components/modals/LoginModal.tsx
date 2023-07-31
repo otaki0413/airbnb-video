@@ -14,10 +14,12 @@ import { Heading } from "@/app/_components/Heading";
 import { Input } from "@/app/_components/inputs/Input";
 import { Modal } from "@/app/_components/modals/Modal";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 // ログイン用のモーダル
 export const LoginModal = () => {
   const router = useRouter();
+  const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -60,6 +62,12 @@ export const LoginModal = () => {
     });
   };
 
+  // モーダルを切り替える処理
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
+
   // モーダル内のコンテンツ
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -85,9 +93,9 @@ export const LoginModal = () => {
       <Button outline label="Continue with Github" icon={AiFillGithub} onClick={() => signIn("github")} />
       <div className="mt-4 text-center font-light text-neutral-500">
         <div className="flex flex-row items-center justify-center gap-2">
-          <div>Already have an account?</div>
-          <div onClick={loginModal.onClose} className="cursor-pointer text-neutral-800 hover:underline">
-            Login
+          <div>First time using Airbnb?</div>
+          <div onClick={toggle} className="cursor-pointer text-neutral-800 hover:underline">
+            Create an account
           </div>
         </div>
       </div>
