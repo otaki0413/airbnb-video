@@ -6,6 +6,7 @@ import { FieldValues, useForm } from "react-hook-form";
 
 import { Heading } from "@/app/_components/Heading";
 import { CategoryInput } from "@/app/_components/inputs/CategoryInput";
+import { CountrySelect } from "@/app/_components/inputs/CountrySelect";
 import { Modal } from "@/app/_components/modals/Modal";
 import { categories } from "@/app/_components/navbar/Categories";
 import useRentModal from "@/app/hooks/useRentModal";
@@ -47,8 +48,9 @@ export const RentModal = () => {
     },
   });
 
-  // カテゴリーフィールドの値を監視する
+  // 各フィールドの値を監視する
   const category = watch("category");
+  const location = watch("location");
 
   // 指定したフォームフィールドに値を設定する
   // id: フィールドのid (例: "email")
@@ -108,11 +110,20 @@ export const RentModal = () => {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Where's your place located?" subtitle="Help guests find you" />
+        <CountrySelect value={location} onChange={(value) => setCustomValue("location", value)} />
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={rentModal.onClose}
+      onSubmit={onNext}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
