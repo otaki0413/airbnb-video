@@ -23,7 +23,7 @@ type MapProps = {
   center?: number[];
 };
 
-const Map: FC<MapProps> = ({ center }) => {
+export const Map: FC<MapProps> = ({ center }) => {
   return (
     <MapContainer
       center={(center as L.LatLngExpression) || [51, -0.09]}
@@ -39,5 +39,3 @@ const Map: FC<MapProps> = ({ center }) => {
     </MapContainer>
   );
 };
-
-export default Map;

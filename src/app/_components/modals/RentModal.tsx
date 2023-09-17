@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 
 import { FieldValues, useForm } from "react-hook-form";
 
@@ -51,6 +52,16 @@ export const RentModal = () => {
   // 各フィールドの値を監視する
   const category = watch("category");
   const location = watch("location");
+
+  // 名前付きエクスポートを動的にインポートする
+  // https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading#importing-named-exports
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("@/app/_components/Map").then((module) => module.Map), {
+        ssr: false,
+      }),
+    [location],
+  );
 
   // 指定したフォームフィールドに値を設定する
   // id: フィールドのid (例: "email")
@@ -115,6 +126,7 @@ export const RentModal = () => {
       <div className="flex flex-col gap-8">
         <Heading title="Where's your place located?" subtitle="Help guests find you" />
         <CountrySelect value={location} onChange={(value) => setCustomValue("location", value)} />
+        <Map center={location?.latlng} />
       </div>
     );
   }
