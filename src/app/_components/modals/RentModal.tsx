@@ -7,6 +7,7 @@ import { FieldValues, useForm } from "react-hook-form";
 
 import { Heading } from "@/app/_components/Heading";
 import { CategoryInput } from "@/app/_components/inputs/CategoryInput";
+import { Counter } from "@/app/_components/inputs/Counter";
 import { CountrySelect } from "@/app/_components/inputs/CountrySelect";
 import { Modal } from "@/app/_components/modals/Modal";
 import { categories } from "@/app/_components/navbar/Categories";
@@ -41,7 +42,7 @@ export const RentModal = () => {
       location: "",
       guestCount: 1,
       roomCount: 1,
-      bathroomCOunt: 1,
+      bathroomCount: 1,
       imageSrc: "",
       price: 1,
       title: "",
@@ -52,6 +53,9 @@ export const RentModal = () => {
   // 各フィールドの値を監視する
   const category = watch("category");
   const location = watch("location");
+  const guestCount = watch("guestCount");
+  const roomCount = watch("roomCount");
+  const bathroomCount = watch("bathroomCount");
 
   // 名前付きエクスポートを動的にインポートする
   // https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading#importing-named-exports
@@ -127,6 +131,40 @@ export const RentModal = () => {
         <Heading title="Where's your place located?" subtitle="Help guests find you" />
         <CountrySelect value={location} onChange={(value) => setCustomValue("location", value)} />
         <Map center={location?.latlng} />
+      </div>
+    );
+  }
+
+  if (step === STEPS.INFO) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Share some basics about your place" subtitle="What amenities do you have?" />
+        <Counter
+          title="Number of guests"
+          subtitle="How many guests do you allow?"
+          value={guestCount}
+          onChange={(value) => {
+            setCustomValue("guestCount", value);
+          }}
+        />
+        <hr />
+        <Counter
+          title="Rooms"
+          subtitle="How many rooms do you have?"
+          value={roomCount}
+          onChange={(value) => {
+            setCustomValue("roomCount", value);
+          }}
+        />
+        <hr />
+        <Counter
+          title="Bathrooms"
+          subtitle="How many bathrooms do you have?"
+          value={bathroomCount}
+          onChange={(value) => {
+            setCustomValue("bathroomCount", value);
+          }}
+        />
       </div>
     );
   }
