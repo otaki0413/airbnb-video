@@ -95,10 +95,9 @@ export const Modal: FC<ModalProps> = ({
               <div className="flex flex-col gap-2 p-6">
                 <div className="flex w-full flex-row items-center gap-4">
                   {secondaryAction && secondaryActionLabel ? (
-                    <Button disabled={disabled} label={secondaryActionLabel} onClick={handleSecondaryAction} />
-                  ) : (
-                    <Button disabled={disabled} label={actionLabel} onClick={handelSubmit} />
-                  )}
+                    <Button disabled={disabled} label={secondaryActionLabel} onClick={handleSecondaryAction} outline />
+                  ) : null}
+                  <Button disabled={disabled} label={actionLabel} onClick={handelSubmit} />
                 </div>
                 {footer}
               </div>
